@@ -81,14 +81,6 @@ tests:
           - test -d $PREFIX/include/qt6/QtWaylandCompositor
           - test -f $PREFIX/lib/libQt6WaylandCompositor${SHLIB_EXT}
 
-          # The Adwaita client-side decoration plugin (the upstreamed version of
-          # https://github.com/FedoraQt/QAdwaitaDecorations) is only built when
-          # CMake finds both Qt::Svg and Qt::DBus:
-          #   https://github.com/qt/qtwayland/blob/v6.11.1/src/client/configure.cmake
-          # If that condition ever stops holding nothing fails, the plugin just
-          # silently goes missing, so assert that it is really here. It is the
-          # only reason many users install this package: it is what gives Qt
-          # applications GNOME-style window decorations under Wayland.
           - test -f $PREFIX/lib/qt6/plugins/wayland-decoration-client/libadwaita${SHLIB_EXT}
           # Existing on disk is not enough -- it also has to register the keys
           # that QT_WAYLAND_DECORATION=adwaita (or =gnome) looks up.
